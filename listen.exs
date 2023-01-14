@@ -32,8 +32,8 @@ end
 
 {:ok, connection} = AMQP.Connection.open()
 {:ok, channel} = AMQP.Channel.open(connection)
-AMQP.Queue.declare(channel, "signup")
-AMQP.Basic.consume(channel, "signup", nil, no_ack: true)
+AMQP.Queue.declare(channel, System.get_env("QUEUE"))
+AMQP.Basic.consume(channel, System.get_env("QUEUE"), nil, no_ack: true)
 IO.puts(" [*] Listening for messages")
 
 Listen.listen_for_messages()

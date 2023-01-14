@@ -7,7 +7,7 @@ defmodule Snitch.Email do
       from: System.get_env("FROM_EMAIL"),
       subject: "Wohoo! New User Alert! ",
       html_body: "We have a new new<strong>User</strong> in the house!",
-      text_body: "Thanks for joining!"
+      text_body: "The EE Family Is Growing"
     )
   end
 end
