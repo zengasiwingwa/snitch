@@ -1,5 +1,5 @@
 defmodule Listen do
-  alias Snitch.User
+  alias Snitch.{User, Email, Mailer}
 
   def listen_for_messages do
     receive do
@@ -21,6 +21,9 @@ defmodule Listen do
         }
 
         Snitch.Repo.insert(user)
+
+        Email.welcome_email()
+        |> Mailer.deliver_now()
 
         listen_for_messages()
     end
