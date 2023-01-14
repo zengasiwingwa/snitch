@@ -22,7 +22,7 @@ defmodule Listen do
 
         Snitch.Repo.insert(user)
 
-        Email.welcome_email()
+        Email.welcome_email(name)
         |> Mailer.deliver_now()
 
         listen_for_messages()
@@ -32,8 +32,10 @@ end
 
 {:ok, connection} = AMQP.Connection.open()
 {:ok, channel} = AMQP.Channel.open(connection)
-AMQP.Queue.declare(channel, System.get_env("QUEUE"))
-AMQP.Basic.consume(channel, System.get_env("QUEUE"), nil, no_ack: true)
+AMQP.Queue.declare(channel, Application.compile_env!(:snitch, :queue))
+AMQP.Basic.consume(channel, Application.compile_env!(:snitch, :queue), nil, no_ack: true)
+# AMQP.Queue.declare(channel, System.get_env("QUEUE"))
+# AMQP.Basic.consume(channel, System.get_env("QUEUE"), nil, no_ack: true)
 IO.puts(" [*] Listening for messages")
 
 Listen.listen_for_messages()
