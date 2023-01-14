@@ -20,7 +20,7 @@ defmodule Snitch.MixProject do
   def application do
     [
       mod: {Snitch.Application, []},
-      extra_applications: [:logger, :runtime_tools]
+      extra_applications: [:logger, :runtime_tools, :bamboo]
     ]
   end
 
@@ -34,6 +34,7 @@ defmodule Snitch.MixProject do
   defp deps do
     [
       {:amqp, "~> 3.2"},
+      {:bamboo, "~> 1.5"},
       {:phoenix, "~> 1.6.15"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},

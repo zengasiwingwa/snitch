@@ -26,6 +26,13 @@ config :snitch, SnitchWeb.Endpoint,
 # at the `config/runtime.exs`.
 config :snitch, Snitch.Mailer, adapter: Swoosh.Adapters.Local
 
+config :snitch, Snitch.Mailer,
+  adapter: Bamboo.SendGridAdapter,
+  api_key: System.get_env("SENDGRID_API_KEY"),
+  hackney_opts: [
+    recv_timeout: :timer.minutes(1)
+  ]
+
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
 
