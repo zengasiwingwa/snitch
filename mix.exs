@@ -35,6 +35,7 @@ defmodule Snitch.MixProject do
     [
       {:amqp, "~> 3.2"},
       {:bamboo, "~> 1.5"},
+      {:distillery, "~> 2.1"},
       {:phoenix, "~> 1.6.15"},
       {:phoenix_ecto, "~> 4.4"},
       {:ecto_sql, "~> 3.6"},
